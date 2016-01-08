@@ -95,60 +95,30 @@ namespace RylandHortonReviewLab
         static public void drawMoney(CDrawer window, double cashVal, double[,] currVals)
         {
             window.AddText("$" + cashVal.ToString(), 24, 400, 50, 0, 0, Color.Yellow);
+            Color[] colours = { Color.Firebrick, Color.LightGreen, Color.Magenta, Color.LightSkyBlue, Color.Silver, Color.Gold, Color.Silver, Color.Silver, Color.Silver, Color.Brown};
             for (int i = 0, x = 100, y = 100; i < currVals.GetLength(1); ++i)
             {
-                if (y > 450 && x != 500)
+                if (y > 500 && x != 500)
                 {
                     y = 100;
                     x = 500;
                 }
                 if (currVals[1, i] > 0)
                 {
-                    switch (currVals[0, i].ToString())
+                    if (i <= 3)
                     {
-                        case "50":
-                            if (currVals[0, i] > 0)
-                                window.AddRectangle(x, y, 150, 70, Color.Red, 0, null);
-                            window.AddText("$50 x " + currVals[1, i].ToString(), 16, x + 35, y + 25, 0, 0, Color.Black);
-                            break;
-                        case "20":
-                            window.AddRectangle(x, y, 150, 70, Color.Green, 0, null);
-                            window.AddText("$20 x " + currVals[1, i].ToString(), 16, x + 35, y + 25, 0, 0, Color.Black);
-                            break;
-                        case "10":
-                            window.AddRectangle(x, y, 150, 70, Color.Purple, 0, null);
-                            window.AddText("$10 x " + currVals[1, i].ToString(), 16, x + 35, y + 25, 0, 0, Color.Black);
-                            break;
-                        case "5":
-                            window.AddRectangle(x, y, 150, 70, Color.LightSkyBlue, 0, null);
-                            window.AddText("$5 x " + currVals[1, i].ToString(), 16, x + 35, y + 25, 0, 0, Color.Black);
-                            break;
-                        case "2":
-                            window.AddEllipse(x, y, 150, 70, Color.Beige, 0, null);
-                            window.AddText("$2 x " + currVals[1, i].ToString(), 16, x + 15, y + 15, 0, 0, Color.Black);
-                            break;
-                        case "1":
-                            window.AddEllipse(x, y, 70, 70, Color.Gold, 0, null);
-                            window.AddText("$1 x " + currVals[1, i].ToString(), 16, x + 15, y + 15, 0, 0, Color.Black);
-                            break;
-                        case "0.25":
-                            window.AddEllipse(x, y, 70, 70, Color.Silver, 0, null);
-                            window.AddText("$0.25 x " + currVals[1, i].ToString(), 16, x + 15, y + 15, 0, 0, Color.Black);
-                            break;
-                        case "0.1":
-                            window.AddEllipse(x, y, 70, 70, Color.Silver, 0, null);
-                            window.AddText("$0.10 x " + currVals[1, i].ToString(), 16, x + 15, y + 15, 0, 0, Color.Black);
-                            break;
-                        case "0.05":
-                            window.AddEllipse(x, y, 70, 70, Color.Silver, 0, null);
-                            window.AddText("$0.05 x " + currVals[1, i].ToString(), 16, x + 15, y + 15, 0, 0, Color.Black);
-                            break;
-                        case "0.01":
-                            window.AddEllipse(x, y, 70, 70, Color.Brown, 0, null);
-                            window.AddText("$0.01 x " + currVals[1, i].ToString(), 16, x + 15, y + 15, 0, 0, Color.Black);
-                            break;
+                        window.AddRectangle(x, y, 180, 80, colours[i], 1, Color.Beige);
+                        window.AddText("$" + ((currVals[0,i] == 0.1) ? "0.10" : currVals[0,i].ToString()) + " x " + currVals[1, i].ToString(), 14, x + 90, y + 40, 0, 0, Color.Black);
+                        y += 90;
                     }
-                    y += 85;
+                    else
+                    {
+                        window.AddEllipse(x + 45, y, 85, 85, colours[i], 1, Color.Beige);
+                        if (currVals[0, i] == 2) window.AddEllipse(x + 63, y+20, 47, 47, Color.Gold);
+                        window.AddText("$" + ((currVals[0,i] == 0.1) ? "0.10" : currVals[0,i].ToString()) + " x " + currVals[1, i].ToString(), 14, x + 85, y + 42, 0, 0, Color.Black);
+                        y += 90;
+                    }
+                    
                 }
             }
         }

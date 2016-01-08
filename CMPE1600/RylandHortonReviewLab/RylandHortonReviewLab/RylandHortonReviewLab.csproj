@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GDIDrawer">
-      <HintPath>..\..\..\..\GDIDrawer.dll</HintPath>
+      <HintPath>..\..\..\..\..\GDIDrawer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
