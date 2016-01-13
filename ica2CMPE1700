@@ -1,0 +1,75 @@
+enum Planets { Mercury = 1, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune }
+		public static void Main (string[] args)
+		{
+			int userMass = 0;
+			bool runProg = true;
+			bool error = false;
+			do {
+				Console.Clear();
+				Console.WriteLine ("\t\tCMPE 1700 Planet Weight Calculator\n");
+				userMass = GetInt ("Enter your mass (in Kg): ");
+				Console.WriteLine ("Choose a number corresponding to the planet for which you wish to calculate.");
+				foreach (Planets p in Enum.GetValues(typeof(Planets))) {
+					Console.Write ("({0}) {1}\n", (int)p, p.ToString ());
+				} 
+				do{
+					error = false;
+					switch ((Planets)GetInt ("\nYour selection:")) {
+					case Planets.Mercury:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Mercury.ToString (), userMass * 3.7);
+							break;
+					case Planets.Venus:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Venus.ToString (), userMass * 8.87);
+							break;
+					case Planets.Earth:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Earth.ToString (), userMass * 9.798);
+							break;
+					case Planets.Mars:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Mars.ToString (), userMass * 3.71);
+							break;
+					case Planets.Jupiter:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Jupiter.ToString (), userMass * 24.92);
+							break;
+					case Planets.Saturn:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Saturn.ToString (), userMass * 10.44);
+							break;
+					case Planets.Uranus:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Uranus.ToString (), userMass * 8.87);
+							break;
+					case Planets.Neptune:
+							Console.WriteLine ("Your weight on {0} is {1}N.", Planets.Neptune.ToString (), userMass * 11.15);
+							break;
+						default:
+							error = true;
+							Console.ForegroundColor = ConsoleColor.Red;
+							Console.WriteLine("Error. Please enter a valid choice.");
+							Console.ResetColor();
+							break;
+						}
+				} while(error);
+				Console.Write("Press Enter to continue, or press any other key to exit.");
+				if(!(Console.ReadKey().Key.Equals(ConsoleKey.Enter)))
+					runProg = false;
+			} while (runProg);
+		}
+		static int GetInt(string prompt)
+		{
+			int userInt = 0;
+			bool error = false;
+			do{
+				Console.Write (prompt);
+				error = false;
+				try
+				{
+					userInt = int.Parse(Console.ReadLine());
+				}
+				catch
+				{
+					error = true;
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("Error. Please enter a valid choice.");
+					Console.ResetColor();
+				}
+			}while (error);
+			return userInt;
+		}
